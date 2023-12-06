@@ -1,46 +1,32 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
- * Write a description of class Elephant here.
- * The Elephant class allows the elephant to move around with arrow keys in the Greenfoot world.
- * It can be further extended to interact with other objects like apples.
+ * Write a description of class elephant here.
  * 
- * @author Alex Chen
- * @version 1.0
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class Elephant extends Actor
-{
-    /**
-     * Act - do whatever the Elephant wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        moveAround();
+public class Elephant extends Actor {
+    // Constructor for Elephant. You can set an image here if you like.
+    public Elephant() {
+        // setImage("elephant.png"); // Uncomment and use the correct image file name
     }
 
-    /**
-     * Move the elephant based on key presses.
-     */
-    public void moveAround()
-    {
+    // Act method - called with each frame to handle user input and collect apples.
+    public void act() {
+        // Elephant movement
         if (Greenfoot.isKeyDown("left")) {
-            setRotation(180);
-            move(1);
+            move(-7); // Move left
         }
         if (Greenfoot.isKeyDown("right")) {
-            setRotation(0);
-            move(1);
+            move(7); // Move right
         }
-        if (Greenfoot.isKeyDown("up")) {
-            setRotation(270);
-            move(1);
-        }
-        if (Greenfoot.isKeyDown("down")) {
-            setRotation(90);
-            move(1);
+        
+        // Collecting apples
+        if (isTouching(Apple.class)) {
+            removeTouching(Apple.class);
+            // Update the score
+            ((MyWorld)getWorld()).increaseScore();
         }
     }
 }
